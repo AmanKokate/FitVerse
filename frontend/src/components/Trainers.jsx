@@ -1,4 +1,4 @@
-import { Award, Instagram, Linkedin } from 'lucide-react'
+import { Award } from 'lucide-react'
 
 const Trainers = () => {
   const trainers = [
@@ -26,62 +26,61 @@ const Trainers = () => {
   ]
 
   return (
-    <section id="trainers" className="py-20 bg-gray-50">
+    <section id="trainers" className="py-20 sm:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-16 sm:mb-20">
+          <span className="inline-block text-green-600 font-semibold text-sm uppercase tracking-wider mb-3">
+            Expert Guidance
+          </span>
           <h2 className="section-title">Meet Our Trainers</h2>
-          <p className="section-subtitle">
-            Our certified trainers are dedicated to helping you achieve your fitness goals.
+          <p className="section-subtitle max-w-2xl mx-auto">
+            Work with certified professionals who are passionate about helping you reach your goals.
           </p>
         </div>
 
         {/* Trainers Grid */}
-        <div className="grid md:grid-cols-3 gap-9">
+        <div className="grid md:grid-cols-3 gap-8 lg:gap-10">
           {trainers.map((trainer, index) => (
             <div 
               key={index}
-              className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-shadow duration-300"
+              className="group"
             >
               {/* Image */}
-              <div className="relative h-80 overflow-hidden">
+              <div className="relative mb-6 overflow-hidden rounded-xl">
                 <img 
                   src={trainer.image} 
                   alt={trainer.name}
-                  className="w-full h-full object-cover transform hover:scale-110 transition-transform duration-500"
+                  className="w-full h-80 object-cover"
                 />
-                <div className="absolute top-4 right-4 bg-green-600 text-white px-4 py-2 rounded-full text-sm font-semibold">
-                  <Award className="inline h-4 w-4 mr-1" />
-                  {trainer.experience}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0"></div>
+                
+                {/* Experience Badge */}
+                <div className="absolute bottom-4 left-4 flex items-center gap-2 text-white">
+                  <Award className="h-4 w-4" />
+                  <span className="text-sm font-medium">{trainer.experience} Experience</span>
                 </div>
               </div>
               
               {/* Content */}
-              <div className="p-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  {trainer.name}
-                </h3>
-                
-                <p className="text-green-600 font-semibold mb-3">
-                  {trainer.specialty}
-                </p>
-                
-                <p className="text-gray-600 text-sm mb-4">
-                  {trainer.certifications}
-                </p>
-                
-                {/* Social Links */}
-                <div className="flex gap-3 pt-4 border-t">
-                  <button className="flex-1 bg-gray-100 hover:bg-red-600 hover:text-white text-gray-700 py-2 rounded-lg transition-colors">
-                    <Instagram className="inline h-5 w-5" />
-                  </button>
-                  <button className="flex-1 bg-gray-100 hover:bg-blue-600 hover:text-white text-gray-700 py-2 rounded-lg transition-colors">
-                    <Linkedin className="inline h-5 w-5" />
-                  </button>
-                  <button className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition-colors font-semibold">
-                    Book Session
-                  </button>
+              <div className="space-y-3">
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">
+                    {trainer.name}
+                  </h3>
+                  <p className="text-green-600 font-medium text-sm mt-1">
+                    {trainer.specialty}
+                  </p>
                 </div>
+                
+                <p className="text-gray-600 text-sm">
+                  Certified: {trainer.certifications}
+                </p>
+                
+                {/* Action Button */}
+                <button className="w-full mt-4 px-6 py-3 border-2 border-gray-900 text-gray-900 rounded-lg font-medium hover:bg-gray-900 hover:text-white transition-all duration-300">
+                  Book a Session
+                </button>
               </div>
             </div>
           ))}

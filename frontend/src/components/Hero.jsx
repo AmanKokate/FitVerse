@@ -34,15 +34,11 @@ const Hero = () => {
 
   return (
     <section id="home" className="pt-16 sm:pt-20 bg-gradient-to-br from-gray-50 to-gray-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 md:py-16">
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
           {/* Left Content */}
           <div className="text-center lg:text-left space-y-6 sm:space-y-8">
-            <div className="inline-block">
-              <span className="bg-green-100 text-green-600 px-3 sm:px-4 py-1 sm:py-2 rounded-full text-xs sm:text-sm font-semibold">
-                #1 Fitness Platform
-              </span>
-            </div>
+    
             
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold leading-tight">
               Transform Your
@@ -60,19 +56,19 @@ const Hero = () => {
               </button>
             </div>
             
-            {/* Stats */}
-            <div className="grid grid-cols-3 gap-4 sm:gap-6 lg:gap-8 pt-6 sm:pt-8">
-              <div className="text-center lg:text-left">
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">500+</h3>
-                <p className="text-gray-600 mt-1 text-sm sm:text-base">Members</p>
-              </div>
-              <div className="text-center lg:text-left">
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">50+</h3>
-                <p className="text-gray-600 mt-1 text-sm sm:text-base">Programs</p>
-              </div>
-              <div className="text-center lg:text-left">
-                <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900">15+</h3>
-                <p className="text-gray-600 mt-1 text-sm sm:text-base">Trainers</p>
+            {/* Brand Slogan */}
+            <div className="pt-8 sm:pt-12">
+              <div className="border-l-4 border-green-600 pl-4 sm:pl-6">
+                <div className="flex items-center justify-center lg:justify-start gap-2 sm:gap-3 text-2xl sm:text-3xl lg:text-4xl font-extrabold">
+                  <span className="text-gray-900">Explore</span>
+                  <span className="text-green-600">→</span>
+                  <span className="text-gray-900">Train</span>
+                  <span className="text-green-600">→</span>
+                  <span className="text-gray-900">Transform</span>
+                </div>
+                <p className="text-center lg:text-left mt-3 text-sm sm:text-base font-bold text-gray-700 tracking-wider">
+                  IN THE <span className="text-green-600">FITVERSE</span>
+                </p>
               </div>
             </div>
           </div>
@@ -129,17 +125,21 @@ const Hero = () => {
               </div>
             </div>
             
-            {/* Floating Card */}
-            <div className="absolute -bottom-3 -left-5 bg-white p-2 rounded-3xl shadow-xl">
-              <div className="flex items-center gap-2">
-                <div className="bg-red-400 p-2 rounded-full">
-                  
+            {/* Floating Stats Card */}
+            <div className="absolute -bottom-6 -left-6 bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden">
+              <div className="flex items-center gap-4 p-5">
+                <div className="relative">
+                  <div className="bg-gradient-to-br from-green-500 to-green-600 p-4 rounded-xl">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                  </div>
+                  <div className="absolute -top-1 -right-1 bg-green-500 rounded-full w-3 h-3 border-2 border-white animate-pulse"></div>
                 </div>
-                <div>
-                  <p className="text-3xl font-bold text-gray-900">15+</p>
-                  <p className="text-gray-700 italic">Happy Clients</p>
+                <div className="pr-2">
+                  <p className="text-3xl font-extrabold text-gray-900 leading-none">15+</p>
+                  <p className="text-sm font-medium text-gray-600 mt-1">Happy Clients</p>
                 </div>
-                
               </div>
             </div>
           </div>
