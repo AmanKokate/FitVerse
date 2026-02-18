@@ -27,7 +27,7 @@ const Navbar = () => {
           <Link to="/" className="flex items-center h-16 sm:h-20 group">
             <div className="flex items-center transition-transform duration-300 group-hover:scale-105">
               <span className="text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-wide italic">FIT</span>
-              <span className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent tracking-wide">VERSE</span>
+              <span className="text-2xl sm:text-3xl lg:text-4xl font-black bg-gradient-to-r from-green-400 to-green-400 bg-clip-text text-transparent tracking-wide">VERSE</span>
             </div>
             <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-6 w-16 sm:w-20 h-0.5 bg-gradient-to-r from-green-400 to-transparent rounded-full"></div>
           </Link>

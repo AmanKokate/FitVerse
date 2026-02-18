@@ -37,7 +37,7 @@ const Trainers = () => {
         </div>
 
         {/* Trainers Grid */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 gap-9">
           {trainers.map((trainer, index) => (
             <div 
               key={index}
@@ -75,10 +75,10 @@ const Trainers = () => {
                   <button className="flex-1 bg-gray-100 hover:bg-red-600 hover:text-white text-gray-700 py-2 rounded-lg transition-colors">
                     <Instagram className="inline h-5 w-5" />
                   </button>
-                  <button className="flex-1 bg-gray-100 hover:bg-red-600 hover:text-white text-gray-700 py-2 rounded-lg transition-colors">
+                  <button className="flex-1 bg-gray-100 hover:bg-blue-600 hover:text-white text-gray-700 py-2 rounded-lg transition-colors">
                     <Linkedin className="inline h-5 w-5" />
                   </button>
-                  <button className="flex-1 bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg transition-colors font-semibold">
+                  <button className="flex-1 bg-green-600 hover:bg-green-700 text-white py-2 rounded-lg transition-colors font-semibold">
                     Book Session
                   </button>
                 </div>

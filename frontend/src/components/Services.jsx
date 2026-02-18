@@ -44,7 +44,7 @@ const Services = () => {
           {services.map((service, index) => (
             <div 
               key={index}
-              className="group p-8 bg-gray-50 rounded-2xl hover:bg-green-600 transition-all duration-300 cursor-pointer transform hover:-translate-y-2 hover:shadow-2xl"
+              className="group p-8 bg-gray-50 rounded-2xl hover:bg-green-400 transition-all duration-300 cursor-pointer transform hover:-translate-y-2 hover:shadow-2xl"
             >
               <div className="text-green-600 group-hover:text-white transition-colors mb-6">
                 {service.icon}
@@ -62,7 +62,7 @@ const Services = () => {
                 <span className="text-2xl font-bold text-gray-900 group-hover:text-white transition-colors">
                   {service.price}
                 </span>
-                <button className="text-red-600 group-hover:text-white font-semibold hover:underline transition-colors">
+                <button className="text-green-600 group-hover:text-white font-semibold hover:underline transition-colors">
                   Learn More →
                 </button>
               </div>

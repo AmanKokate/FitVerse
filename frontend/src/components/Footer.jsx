@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube } from 'lucide-react'
+import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube, InstagramIcon } from 'lucide-react'
 
 const Footer = () => {
   return (
@@ -10,9 +10,10 @@ const Footer = () => {
             <div className="flex items-center space-x-2">
               <div className="flex items-center">
                 <span className="text-lg sm:text-xl lg:text-2xl font-black text-white tracking-wide italic">FIT</span>
-                <span className="text-lg sm:text-xl lg:text-2xl font-black bg-gradient-to-r from-green-400 to-green-500 bg-clip-text text-transparent tracking-wide">VERSE</span>
+                <span className="text-lg sm:text-xl lg:text-2xl font-black bg-gradient-to-r from-green-400 to-green-400 bg-clip-text text-transparent tracking-wide">VERSE</span>
               </div>
             </div>
+            
             <p className="text-gray-400 text-sm sm:text-base">
               Transform your body and mind with our world-class fitness programs and expert trainers.
             </p>
@@ -77,21 +78,21 @@ const Footer = () => {
             <h3 className="text-lg font-bold mb-4">Contact Us</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
-                <MapPin className="h-5 w-5 text-red-600 mt-1" />
+                <InstagramIcon className="h-5 w-5 text-red-600 mt-1" />
                 <span className="text-gray-400">
-                  123 Fitness Street, New York, NY 10001
+                  @fitverse_hub_
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Phone className="h-5 w-5 text-red-600" />
+                <Phone className="h-5 w-5 text-gray-100" />
                 <span className="text-gray-400">
-                  +1 (555) 123-4567
+                  9021255748
                 </span>
               </li>
               <li className="flex items-center gap-3">
-                <Mail className="h-5 w-5 text-red-600" />
+                <Mail className="h-5 w-5 text-gray-100" />
                 <span className="text-gray-400">
-                  info@fitverse.com
+                  team.fitverse@gmail.com
                 </span>
               </li>
             </ul>

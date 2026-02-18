@@ -1,6 +1,37 @@
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, ChevronLeft, ChevronRight } from 'lucide-react'
+import { useState, useEffect } from 'react'
 
 const Hero = () => {
+  const images = [
+    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1000",
+    "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1000",
+    "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1000",
+    "https://images.unsplash.com/photo-1558017487-06bf9f82613a?q=80&w=1000",
+    "https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=1000"
+  ]
+
+  const [currentImageIndex, setCurrentImageIndex] = useState(0)
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length)
+    }, 3000) // Change image every 3 seconds
+
+    return () => clearInterval(interval)
+  }, [images.length])
+
+  const nextSlide = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex - 1 + images.length) % images.length)
+  }
+
+  const goToSlide = (index) => {
+    setCurrentImageIndex(index)
+  }
+
   return (
     <section id="home" className="pt-16 sm:pt-20 bg-gradient-to-br from-gray-50 to-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20 md:py-32">
@@ -46,28 +77,69 @@ const Hero = () => {
             </div>
           </div>
           
-          {/* Right Content - Image */}
+          {/* Right Content - Image Slideshow */}
           <div className="relative">
-            <div className="aspect-square rounded-3xl bg-gradient-to-br from-gray-500 to-gray-600 overflow-hidden shadow-2xl">
-              <img 
-                src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1000" 
-                alt="Fitness Training" 
-                className="w-full h-full object-cover mix-blend-overlay opacity-80"
-              />
+            <div className="aspect-square rounded-3xl bg-gradient-to-br from-gray-500 to-gray-600 overflow-hidden shadow-2xl relative">
+              {/* Images */}
+              {images.map((image, index) => (
+                <img 
+                  key={index}
+                  src={image} 
+                  alt={`Fitness Training ${index + 1}`} 
+                  className={`absolute inset-0 w-full h-full object-cover mix-blend-overlay opacity-80 transition-all duration-700 ${
+                    index === currentImageIndex 
+                      ? 'translate-x-0 opacity-80' 
+                      : index < currentImageIndex 
+                        ? '-translate-x-full opacity-0' 
+                        : 'translate-x-full opacity-0'
+                  }`}
+                />
+              ))}
+
+              {/* Navigation Arrows */}
+              <button 
+                onClick={prevSlide}
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all duration-200 z-10"
+                aria-label="Previous slide"
+              >
+                <ChevronLeft className="h-5 w-5 text-gray-800" />
+              </button>
+              <button 
+                onClick={nextSlide}
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all duration-200 z-10"
+                aria-label="Next slide"
+              >
+                <ChevronRight className="h-5 w-5 text-gray-800" />
+              </button>
+
+              {/* Dot Indicators */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+                {images.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      index === currentImageIndex 
+                        ? 'w-8 bg-white' 
+                        : 'w-2 bg-white/50 hover:bg-white/75'
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
             
             {/* Floating Card */}
-            <div className="absolute -bottom-6 -left-6 bg-white p-6 rounded-2xl shadow-xl">
-              <div className="flex items-center gap-4">
-                <div className="bg-red-100 p-3 rounded-full">
-                  <svg className="w-8 h-8 text-red-00" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
+            <div className="absolute -bottom-3 -left-5 bg-white p-2 rounded-3xl shadow-xl">
+              <div className="flex items-center gap-2">
+                <div className="bg-red-400 p-2 rounded-full">
+                  
                 </div>
                 <div>
-                  <p className="text-2xl font-bold text-gray-900">2000+</p>
-                  <p className="text-gray-600">Calories Burned</p>
+                  <p className="text-3xl font-bold text-gray-900">15+</p>
+                  <p className="text-gray-700 italic">Happy Clients</p>
                 </div>
+                
               </div>
             </div>
           </div>
