@@ -7,21 +7,24 @@ const Trainers = () => {
       specialty: "Strength & Conditioning",
       image: "https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=400",
       experience: "8 Years",
-      certifications: "NASM-CPT, CSCS"
+      certifications: "NASM-CPT, CSCS",
+      clientsTransformed: "20+"
     },
     {
       name: "Mike Chen",
       specialty: "Cardio & HIIT",
       image: "https://images.unsplash.com/photo-1567013127542-490d757e51fc?q=80&w=400",
       experience: "6 Years",
-      certifications: "ACE-CPT, TRX"
+      certifications: "ACE-CPT, TRX",
+      clientsTransformed: "15+"
     },
     {
       name: "Emily Rodriguez",
       specialty: "Yoga & Wellness",
       image: "https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=400",
       experience: "10 Years",
-      certifications: "RYT-500, Wellness Coach"
+      certifications: "RYT-500, Wellness Coach",
+      clientsTransformed: "25+"
     }
   ]
 
@@ -44,7 +47,7 @@ const Trainers = () => {
           {trainers.map((trainer, index) => (
             <div 
               key={index}
-              className="group"
+              className="group border-2 border-gray-200 rounded-2xl p-6 hover:border-green-600 transition-colors"
             >
               {/* Image */}
               <div className="relative mb-6 overflow-hidden rounded-xl">
@@ -77,9 +80,13 @@ const Trainers = () => {
                   Certified: {trainer.certifications}
                 </p>
                 
+                <p className="text-green-600 font-semibold text-sm">
+                  {trainer.clientsTransformed} Clients Transformed
+                </p>
+                
                 {/* Action Button */}
-                <button className="w-full mt-4 px-6 py-3 border-2 border-gray-900 text-gray-900 rounded-lg font-medium hover:bg-gray-900 hover:text-white transition-all duration-300">
-                  Book a Session
+                <button className="inline-block mt-5 px-6 py-2.5 bg-green-600 text-white rounded-lg text-sm font-semibold hover:bg-green-700 transition-all duration-300 shadow-md hover:shadow-lg">
+                  Contact
                 </button>
               </div>
             </div>

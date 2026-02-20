@@ -1,30 +1,61 @@
-import { Dumbbell, Heart, Users, Trophy } from 'lucide-react'
+import { Dumbbell, Heart, Users, Trophy, Calendar, Target, Clock, Home } from 'lucide-react'
 
 const Services = () => {
   const services = [
     {
-      icon: <Dumbbell className="h-10 w-10" />,
-      title: "Strength Training",
-      description: "Build muscle and increase your strength with our expert-designed programs and state-of-the-art equipment.",
-      price: "$49/month"
-    },
-    {
-      icon: <Heart className="h-10 w-10" />,
-      title: "Cardio Fitness",
-      description: "Improve your cardiovascular health and endurance with high-energy cardio workouts.",
-      price: "$39/month"
-    },
-    {
-      icon: <Users className="h-10 w-10" />,
-      title: "Personal Training",
-      description: "Get one-on-one attention from certified trainers to achieve your specific fitness goals.",
-      price: "$99/month"
+      icon: <Target className="h-10 w-10" />,
+      title: "12 Week Full Coaching Package",
+      subtitle: "3 Month Transformation Program",
+      description: "Complete online coaching for full body transformation.",
+      features: [
+        "Customized training program",
+        "Personalized nutrition plan",
+        "24/7 coach support",
+        "Training video critique and form correction",
+        "Weekly progress review and updates"
+      ],
+      price: "₹6,500/-"
     },
     {
       icon: <Trophy className="h-10 w-10" />,
-      title: "Group Classes",
-      description: "Join energetic group sessions including yoga, Pilates, HIIT, and more.",
-      price: "$29/month"
+      title: "24 Week Full Coaching Package",
+      subtitle: "6 Month Total Transformation",
+      description: "Extended coaching for deeper fat loss, muscle growth, and sustainable habits.",
+      features: [
+        "Customized training program",
+        "Personalized nutrition plan",
+        "24/7 coach support",
+        "Training video critique and form correction",
+        "Weekly progress review and updates",
+        "Long term progress strategy"
+      ],
+      price: "₹12,500/-"
+    },
+    {
+      icon: <Dumbbell className="h-10 w-10" />,
+      title: "Online Training Only",
+      subtitle: "3 Month Program",
+      description: "Structured training support without nutrition coaching.",
+      features: [
+        "Customized training program",
+        "24/7 coach support",
+        "Training video critique and form correction",
+        "Weekly progress review and updates"
+      ],
+      price: "₹3,500/-"
+    },
+    {
+      icon: <Home className="h-10 w-10" />,
+      title: "Home Workout Programs",
+      subtitle: "Monthly Plan",
+      description: "Equipment free routines designed for home fitness.",
+      features: [
+        "Equipment free routines",
+        "Simple structured workouts",
+        "Progressive difficulty levels",
+        "Time efficient sessions"
+      ],
+      price: "₹499/-"
     }
   ]
 
@@ -34,11 +65,11 @@ const Services = () => {
         {/* Section Header */}
         <div className="text-center mb-16 sm:mb-20">
           <span className="inline-block text-green-600 font-semibold text-sm uppercase tracking-wider mb-3">
-            What We Offer
+            Coaching Packages
           </span>
-          <h2 className="section-title">Our Services</h2>
+          <h2 className="section-title">Transform Your Body</h2>
           <p className="section-subtitle max-w-2xl mx-auto">
-            Choose from our wide range of fitness programs designed to meet your unique needs and goals.
+            Choose the perfect coaching package tailored to your fitness goals and commitment level.
           </p>
         </div>
 
@@ -47,34 +78,43 @@ const Services = () => {
           {services.map((service, index) => (
             <div 
               key={index}
-              className="group relative bg-white border-2 border-gray-100 rounded-xl p-8 hover:border-green-500 transition-all duration-300 hover:shadow-lg"
+              className="group relative bg-white border-2 border-gray-100 rounded-xl p-6 hover:border-green-500 transition-all duration-300 hover:shadow-xl flex flex-col"
             >
               {/* Icon */}
-              <div className="mb-6">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-lg bg-green-50 text-green-600">
+              <div className="mb-4">
+                <div className="inline-flex items-center justify-center w-14 h-14 rounded-lg bg-green-50 text-green-600">
                   {service.icon}
                 </div>
               </div>
               
               {/* Content */}
-              <h3 className="text-xl font-bold mb-3 text-gray-900">
+              <h3 className="text-lg font-bold mb-1 text-gray-900">
                 {service.title}
               </h3>
               
-              <p className="text-gray-600 text-sm leading-relaxed mb-6">
+              <p className="text-sm font-semibold text-green-600 mb-3">
+                {service.subtitle}
+              </p>
+              
+              <p className="text-gray-600 text-sm leading-relaxed mb-4">
                 {service.description}
               </p>
               
+              {/* Features List */}
+              <ul className="space-y-2 mb-6 flex-grow">
+                {service.features.map((feature, idx) => (
+                  <li key={idx} className="flex items-start text-xs text-gray-700">
+                    <span className="text-green-600 mr-2 mt-0.5">•</span>
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+              
               {/* Pricing */}
-              <div className="pt-4 border-t border-gray-100">
-                <div className="flex items-center justify-between">
-                  <span className="text-2xl font-bold text-gray-900">
-                    {service.price}
-                  </span>
-                  <button className="text-green-600 font-medium text-sm hover:text-green-700 transition-colors">
-                    Learn More →
-                  </button>
-                </div>
+              <div className="pt-4 border-t border-gray-100 mt-auto text-center">
+                <p className="bg-green-50 text-gray-900 text-3xl font-bold py-2 rounded-lg">
+                  {service.price}
+                </p>
               </div>
             </div>
           ))}
