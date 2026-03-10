@@ -10,7 +10,7 @@ const Navbar = () => {
 
   const navLinks = [
     { to: '/', label: 'Home' },
-    { to: '/calorie-tracker', label: 'Calorie Tracker' },
+    { to: '/calorie-tracker', label: 'Nutrition Finder' },
     { to: '/workout-plans', label: 'Workouts' },
     { to: '/meal-plans', label: 'Meal Plans' },
     { to: '/coaching', label: 'Coaching' },
