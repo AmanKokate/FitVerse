@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import Navbar from '../components/Navbar'
 import Footer from '../components/Footer'
-import { User, Mail, Phone, Target, MessageSquare, Calendar, CheckCircle } from 'lucide-react'
+import { Target, Calendar, CheckCircle } from 'lucide-react'
 
 function CoachingPage() {
   const [formData, setFormData] = useState({
@@ -16,6 +16,8 @@ function CoachingPage() {
   })
 
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = (e) => {
     const { name, value } = e.target
@@ -25,26 +27,47 @@ function CoachingPage() {
     }))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Here you would typically send the data to your backend
-    console.log('Form submitted:', formData)
-    setIsSubmitted(true)
+    setIsSubmitting(true)
+    setError('')
     
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        fitnessLevel: '',
-        goal: '',
-        coachingType: '',
-        preferredTime: '',
-        message: ''
+    try {
+      const response = await fetch('http://localhost:8000/api/coaching-consultation/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
       })
-    }, 3000)
+
+      const data = await response.json()
+
+      if (response.ok) {
+        setIsSubmitted(true)
+        
+        // Reset form after 3 seconds
+        setTimeout(() => {
+          setIsSubmitted(false)
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            fitnessLevel: '',
+            goal: '',
+            coachingType: '',
+            preferredTime: '',
+            message: ''
+          })
+        }, 3000)
+      } else {
+        setError(data.error || 'Failed to submit form. Please try again.')
+      }
+    } catch (err) {
+      setError('Network error. Please check your connection and try again.')
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -52,78 +75,74 @@ function CoachingPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <div className="bg-gradient-to-r from-green-600 to-green-700 text-white py-12 sm:py-16 lg:py-20 mt-16 sm:mt-20">
-        <div className="container mx-auto px-3 sm:px-6 text-center">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 sm:mb-4">Personal Coaching & Consultation</h1>
-          <p className="text-sm sm:text-base md:text-lg lg:text-xl text-green-100 max-w-2xl mx-auto">
+      <div className="bg-gradient-to-br from-gray-50 to-gray-100 pt-28 pb-20 mt-16">
+        <div className="container mx-auto px-6 text-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
+            Personal Coaching & <span className="text-green-600">Consultation</span>
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-light">
             Take your fitness journey to the next level with personalized coaching from our expert trainers
           </p>
         </div>
       </div>
 
-      <div className="container mx-auto px-3 sm:px-6 py-8 sm:py-12">
-        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-12">
+      <div className="container mx-auto px-6 py-16 max-w-7xl">
+        <div className="grid lg:grid-cols-2 gap-12">
           {/* Left Column - Benefits */}
           <div>
-            <h2 className="text-3xl font-bold text-gray-900 mb-6">Why Choose Personal Coaching?</h2>
+            <h2 className="text-3xl font-bold text-gray-900 mb-8">Why Choose Personal Coaching?</h2>
             
-            <div className="space-y-6">
-              <div className="flex gap-4">
+            <div className="space-y-5">
+              <div className="flex gap-4 group">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <Target className="w-6 h-6 text-green-600" />
-                  </div>
+                  <Target className="w-6 h-6 text-green-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Personalized Programs</h3>
-                  <p className="text-gray-600">Custom workout and nutrition plans tailored to your specific goals, fitness level, and lifestyle.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">Personalized Programs</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">Custom workout and nutrition plans tailored to your specific goals, fitness level, and lifestyle.</p>
                 </div>
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex gap-4 group">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
-                    <CheckCircle className="w-6 h-6 text-blue-600" />
-                  </div>
+                  <CheckCircle className="w-6 h-6 text-green-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Expert Guidance</h3>
-                  <p className="text-gray-600">Work with certified trainers who provide ongoing support, motivation, and accountability.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">Expert Guidance</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">Work with certified trainers who provide ongoing support, motivation, and accountability.</p>
                 </div>
               </div>
 
-              <div className="flex gap-4">
+              <div className="flex gap-4 group">
                 <div className="flex-shrink-0">
-                  <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <Calendar className="w-6 h-6 text-green-600" />
-                  </div>
+                  <Calendar className="w-6 h-6 text-green-600" />
                 </div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-2">Flexible Scheduling</h3>
-                  <p className="text-gray-600">Choose between online and in-person sessions that fit your schedule and preferences.</p>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-1">Flexible Scheduling</h3>
+                  <p className="text-gray-600 text-sm leading-relaxed">Choose between online and in-person sessions that fit your schedule and preferences.</p>
                 </div>
               </div>
             </div>
 
             {/* Coaching Types */}
-            <div className="mt-8 bg-gradient-to-br from-green-50 to-green-50 rounded-lg p-6">
-              <h3 className="text-xl font-bold text-gray-900 mb-4">Coaching Options</h3>
+            <div className="mt-10 border border-gray-200 rounded-xl p-6 bg-white">
+              <h3 className="text-xl font-bold text-gray-900 mb-5">Coaching Options</h3>
               <ul className="space-y-3">
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-green-600 rounded-full"></span>
-                  <span className="text-gray-700"><strong>1-on-1 Training:</strong> Individual attention and customized workouts</span>
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700 text-sm"><strong className="text-gray-900">1-on-1 Training:</strong> Individual attention and customized workouts</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-green-600 rounded-full"></span>
-                  <span className="text-gray-700"><strong>Online Coaching:</strong> Train from anywhere with virtual guidance</span>
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700 text-sm"><strong className="text-gray-900">Online Coaching:</strong> Train from anywhere with virtual guidance</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-green-600 rounded-full"></span>
-                  <span className="text-gray-700"><strong>Nutrition Coaching:</strong> Personalized meal plans and dietary guidance</span>
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700 text-sm"><strong className="text-gray-900">Nutrition Coaching:</strong> Personalized meal plans and dietary guidance</span>
                 </li>
-                <li className="flex items-center gap-2">
-                  <span className="w-2 h-2 bg-green-600 rounded-full"></span>
-                  <span className="text-gray-700"><strong>Group Sessions:</strong> Train with others for motivation and fun</span>
+                <li className="flex items-start gap-3">
+                  <span className="w-1.5 h-1.5 bg-green-600 rounded-full mt-2 flex-shrink-0"></span>
+                  <span className="text-gray-700 text-sm"><strong className="text-gray-900">Group Sessions:</strong> Train with others for motivation and fun</span>
                 </li>
               </ul>
             </div>
@@ -131,21 +150,26 @@ function CoachingPage() {
 
           {/* Right Column - Form */}
           <div>
-            <div className="bg-white rounded-lg shadow-lg p-8">
+            <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-sm">
               <h2 className="text-2xl font-bold text-gray-900 mb-6">Request a Consultation</h2>
               
+              {error && (
+                <div className="bg-red-50 border border-red-200 rounded-xl p-4 mb-6">
+                  <p className="text-red-700 text-sm">{error}</p>
+                </div>
+              )}
+              
               {isSubmitted ? (
-                <div className="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
-                  <CheckCircle className="w-16 h-16 text-green-600 mx-auto mb-4" />
-                  <h3 className="text-xl font-bold text-green-800 mb-2">Thank You!</h3>
-                  <p className="text-green-700">Your consultation request has been submitted. Our team will contact you shortly!</p>
+                <div className="bg-green-50 border border-green-200 rounded-xl p-8 text-center">
+                  <CheckCircle className="w-12 h-12 text-green-600 mx-auto mb-3" />
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Thank You!</h3>
+                  <p className="text-gray-600 text-sm">Your consultation request has been submitted. Our team will contact you shortly!</p>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-5">
                   {/* Name */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      <User className="w-4 h-4 inline mr-1" />
                       Full Name *
                     </label>
                     <input
@@ -154,15 +178,14 @@ function CoachingPage() {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                      placeholder="John Doe"
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-shadow"
+                      placeholder="Enter your name"
                     />
                   </div>
 
                   {/* Email */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      <Mail className="w-4 h-4 inline mr-1" />
                       Email Address *
                     </label>
                     <input
@@ -171,15 +194,14 @@ function CoachingPage() {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                      placeholder="john@example.com"
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-shadow"
+                      placeholder="your@email.com"
                     />
                   </div>
 
                   {/* Phone */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      <Phone className="w-4 h-4 inline mr-1" />
                       Phone Number *
                     </label>
                     <input
@@ -188,8 +210,8 @@ function CoachingPage() {
                       value={formData.phone}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
-                      placeholder="+1 (555) 123-4567"
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-shadow"
+                      placeholder="+91 98765 43210"
                     />
                   </div>
 
@@ -203,7 +225,7 @@ function CoachingPage() {
                       value={formData.fitnessLevel}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-shadow"
                     >
                       <option value="">Select your level</option>
                       <option value="beginner">Beginner - New to fitness</option>
@@ -215,7 +237,6 @@ function CoachingPage() {
                   {/* Goal */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      <Target className="w-4 h-4 inline mr-1" />
                       Primary Fitness Goal *
                     </label>
                     <select
@@ -223,7 +244,7 @@ function CoachingPage() {
                       value={formData.goal}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-shadow"
                     >
                       <option value="">Select your goal</option>
                       <option value="weight-loss">Weight Loss</option>
@@ -245,7 +266,7 @@ function CoachingPage() {
                       value={formData.coachingType}
                       onChange={handleChange}
                       required
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-shadow"
                     >
                       <option value="">Select coaching type</option>
                       <option value="online">Online Coaching</option>
@@ -258,14 +279,13 @@ function CoachingPage() {
                   {/* Preferred Time */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      <Calendar className="w-4 h-4 inline mr-1" />
                       Preferred Time for Contact
                     </label>
                     <select
                       name="preferredTime"
                       value={formData.preferredTime}
                       onChange={handleChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-shadow"
                     >
                       <option value="">Select preferred time</option>
                       <option value="morning">Morning (8am - 12pm)</option>
@@ -278,7 +298,6 @@ function CoachingPage() {
                   {/* Message */}
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
-                      <MessageSquare className="w-4 h-4 inline mr-1" />
                       Additional Information
                     </label>
                     <textarea
@@ -286,7 +305,7 @@ function CoachingPage() {
                       value={formData.message}
                       onChange={handleChange}
                       rows="4"
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                      className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-transparent transition-shadow resize-none"
                       placeholder="Tell us about any specific concerns, injuries, or questions..."
                     ></textarea>
                   </div>
@@ -294,12 +313,13 @@ function CoachingPage() {
                   {/* Submit Button */}
                   <button
                     type="submit"
-                    className="w-full bg-red-600 text-white py-3 rounded-lg font-semibold hover:bg-red-700 transition-colors"
+                    disabled={isSubmitting}
+                    className="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors mt-6 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    Submit Consultation Request
+                    {isSubmitting ? 'Submitting...' : 'Submit Consultation Request'}
                   </button>
 
-                  <p className="text-xs text-gray-500 text-center">
+                  <p className="text-xs text-gray-500 text-center mt-3">
                     We'll get back to you within 24 hours to schedule your free consultation
                   </p>
                 </form>
@@ -309,24 +329,24 @@ function CoachingPage() {
         </div>
 
         {/* FAQ Section */}
-        <div className="mt-16 bg-white rounded-lg shadow-lg p-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-8 text-center">Frequently Asked Questions</h2>
-          <div className="grid md:grid-cols-2 gap-6">
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How much does coaching cost?</h3>
-              <p className="text-gray-600 text-sm">Pricing varies based on the type of coaching and frequency. We'll discuss options during your free consultation call.</p>
+        <div className="mt-20 max-w-7xl mx-auto">
+          <h2 className="text-3xl font-bold text-gray-900 mb-10 text-center">Frequently Asked Questions</h2>
+          <div className="grid md:grid-cols-2 gap-8">
+            <div className="border-l-4 border-green-600 pl-5">
+              <h3 className="font-semibold text-gray-900 mb-2 text-lg">How much does coaching cost?</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">Pricing varies based on the type of coaching and frequency. We'll discuss options during your free consultation call.</p>
             </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">Can I switch between online and in-person?</h3>
-              <p className="text-gray-600 text-sm">Yes! Our hybrid coaching option allows flexibility to combine both online and in-person sessions.</p>
+            <div className="border-l-4 border-green-600 pl-5">
+              <h3 className="font-semibold text-gray-900 mb-2 text-lg">Can I switch between online and in-person?</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">Yes! Our hybrid coaching option allows flexibility to combine both online and in-person sessions.</p>
             </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">What if I have injuries or limitations?</h3>
-              <p className="text-gray-600 text-sm">Our trainers are experienced in working with various limitations and will create a safe, effective program for you.</p>
+            <div className="border-l-4 border-green-600 pl-5">
+              <h3 className="font-semibold text-gray-900 mb-2 text-lg">What if I have injuries or limitations?</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">Our trainers are experienced in working with various limitations and will create a safe, effective program for you.</p>
             </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 mb-2">How long are coaching sessions?</h3>
-              <p className="text-gray-600 text-sm">Typical sessions are 45-60 minutes, but we can customize duration based on your needs and goals.</p>
+            <div className="border-l-4 border-green-600 pl-5">
+              <h3 className="font-semibold text-gray-900 mb-2 text-lg">How long are coaching sessions?</h3>
+              <p className="text-gray-600 text-sm leading-relaxed">Typical sessions are 45-60 minutes, but we can customize duration based on your needs and goals.</p>
             </div>
           </div>
         </div>

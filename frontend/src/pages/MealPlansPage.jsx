@@ -19,143 +19,173 @@ function MealPlansPage() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       {/* Header */}
-      <div className="bg-gradient-to-r from-green-600 to-green-700 text-white py-16 mt-20">
-        <div className="container mx-auto px-6">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">Meal Plans & Nutrition</h1>
-          <p className="text-xl text-green-100">Fuel your fitness journey with expertly crafted meal plans</p>
+      <div className="bg-gradient-to-br from-gray-50 to-gray-100 pt-28 pb-20 mt-16">
+        <div className="container mx-auto px-6 text-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
+            Meal Plans & <span className="text-green-600">Nutrition</span>
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-light">
+            Fuel your fitness journey with expertly crafted meal plans
+          </p>
         </div>
       </div>
 
-      <div className="container mx-auto px-6 py-12">
-        {/* Meal Plans Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
-          {mealPlans.map(plan => (
-            <div key={plan.id} className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow">
-              <img src={plan.image} alt={plan.title} className="w-full h-32 sm:h-40 object-cover" />
-              
-              <div className="p-4">
-                <div className="flex items-center justify-between mb-2">
-                  <h3 className="text-xl font-bold text-gray-900">{plan.title}</h3>
-                  <span className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold">
-                    {plan.goal}
-                  </span>
+      <div className="container mx-auto px-6 py-16">
+        <div className="max-w-7xl mx-auto">
+          {/* Meal Plans Grid */}
+          <div className="space-y-4 sm:space-y-6">
+            {mealPlans.map(plan => (
+              <div key={plan.id} className="bg-white rounded-lg sm:rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+                {/* Plan Header */}
+                <div className="lg:flex">
+                  {/* Image */}
+                  <div className="lg:w-1/3 lg:flex-shrink-0">
+                    <img src={plan.image} alt={plan.title} className="w-full h-56 sm:h-64 lg:h-72 object-cover" />
+                  </div>
+                  
+                  {/* Content */}
+                  <div className="lg:w-2/3 p-4 sm:p-6">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between mb-4 gap-3">
+                      <div className="flex-1">
+                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">{plan.title}</h2>
+                        <p className="text-gray-600 text-sm sm:text-base">{plan.description}</p>
+                      </div>
+                      <span className="px-4 py-2 bg-green-100 text-green-700 rounded-full text-sm font-semibold self-start">
+                        {plan.goal}
+                      </span>
+                    </div>
+
+                    {/* Macros Overview */}
+                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                      <div className="flex items-center gap-2">
+                        <Flame className="h-5 w-5 text-green-600 flex-shrink-0" />
+                        <div>
+                          <p className="text-xs text-gray-600">Calories</p>
+                          <p className="font-semibold text-sm text-gray-900">{plan.calories}</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <Target className="h-5 w-5 text-green-600 flex-shrink-0" />
+                        <div>
+                          <p className="text-xs text-gray-600">Protein</p>
+                          <p className="font-semibold text-sm text-gray-900">{plan.macros.protein}g</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <Scale className="h-5 w-5 text-green-600 flex-shrink-0" />
+                        <div>
+                          <p className="text-xs text-gray-600">Carbs</p>
+                          <p className="font-semibold text-sm text-gray-900">{plan.macros.carbs}g</p>
+                        </div>
+                      </div>
+
+                      <div className="flex items-center gap-2">
+                        <Scale className="h-5 w-5 text-green-600 flex-shrink-0" />
+                        <div>
+                          <p className="text-xs text-gray-600">Fats</p>
+                          <p className="font-semibold text-sm text-gray-900">{plan.macros.fats}g</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* View Details Button */}
+                    <button
+                      onClick={() => setSelectedPlan(selectedPlan === plan.id ? null : plan.id)}
+                      className="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-all duration-300 flex items-center justify-center gap-2 font-medium"
+                    >
+                      {selectedPlan === plan.id ? (
+                        <>
+                          Hide Details <ChevronUp className="w-5 h-5" />
+                        </>
+                      ) : (
+                        <>
+                          View Full Plan <ChevronDown className="w-5 h-5" />
+                        </>
+                      )}
+                    </button>
+                  </div>
                 </div>
-
-                <p className="text-gray-600 text-sm mb-3">{plan.description}</p>
-
-                {/* Macros Overview */}
-                <div className="grid grid-cols-2 gap-2 mb-4">
-                  <div className="bg-gray-50 rounded-lg p-2">
-                    <div className="flex items-center gap-1 mb-1">
-                      <Flame className="w-3 h-3 text-red-600" />
-                      <span className="text-xs font-medium text-gray-700">Calories</span>
-                    </div>
-                    <p className="text-lg font-bold text-gray-900">{plan.calories}</p>
-                  </div>
-
-                  <div className="bg-gray-50 rounded-lg p-2">
-                    <div className="flex items-center gap-1 mb-1">
-                      <Target className="w-3 h-3 text-red-600" />
-                      <span className="text-xs font-medium text-gray-700">Protein</span>
-                    </div>
-                    <p className="text-lg font-bold text-gray-900">{plan.macros.protein}g</p>
-                  </div>
-
-                  <div className="bg-gray-50 rounded-lg p-2">
-                    <div className="flex items-center gap-1 mb-1">
-                      <Scale className="w-3 h-3 text-red-600" />
-                      <span className="text-xs font-medium text-gray-700">Carbs</span>
-                    </div>
-                    <p className="text-lg font-bold text-gray-900">{plan.macros.carbs}g</p>
-                  </div>
-
-                  <div className="bg-gray-50 rounded-lg p-2">
-                    <div className="flex items-center gap-1 mb-1">
-                      <Scale className="w-3 h-3 text-red-600" />
-                      <span className="text-xs font-medium text-gray-700">Fats</span>
-                    </div>
-                    <p className="text-lg font-bold text-gray-900">{plan.macros.fats}g</p>
-                  </div>
-                </div>
-
-                {/* View Details Button */}
-                <button
-                  onClick={() => setSelectedPlan(selectedPlan === plan.id ? null : plan.id)}
-                  className="w-full bg-green-600 text-white py-2 rounded-lg hover:bg-green-700 transition-colors flex items-center justify-center gap-2"
-                >
-                  {selectedPlan === plan.id ? (
-                    <>
-                      <ChevronUp className="w-5 h-5" />
-                      Hide Details
-                    </>
-                  ) : (
-                    <>
-                      <ChevronDown className="w-5 h-5" />
-                      View Full Plan
-                    </>
-                  )}
-                </button>
 
                 {/* Expanded Details */}
                 {selectedPlan === plan.id && (
-                  <div className="mt-6 border-t pt-6">
+                  <div className="border-t border-gray-200 p-4 sm:p-6 bg-gray-50">
                     {/* Daily Meals */}
-                    <h4 className="text-xl font-bold mb-4">Daily Meal Schedule</h4>
-                    <div className="space-y-3">
+                    <h4 className="text-xl font-bold mb-6 text-gray-900">Daily Meal Schedule</h4>
+                    <div className="space-y-4">
                       {plan.meals.map((meal, idx) => (
-                        <div key={idx} className="border border-gray-200 rounded-lg overflow-hidden">
+                        <div key={idx} className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-green-600 hover:shadow-md transition-all">
                           <button
                             onClick={() => toggleMeal(idx)}
-                            className="w-full bg-gray-50 px-4 py-3 flex items-center justify-between hover:bg-gray-100 transition-colors"
+                            className="w-full px-5 py-4 flex items-center justify-between hover:bg-gray-50 transition-colors"
                           >
-                            <div className="flex items-center gap-3">
-                              <div className="bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
-                                {meal.type}
-                              </div>
-                              <span className="font-semibold text-gray-900">{meal.name}</span>
-                            </div>
                             <div className="flex items-center gap-4">
-                              <span className="text-sm text-gray-600">{meal.calories} cal</span>
+                              <span className="bg-green-600 text-white px-4 py-1.5 rounded-lg text-xs font-semibold uppercase tracking-wide">
+                                {meal.type}
+                              </span>
+                              <div className="text-left">
+                                <span className="font-bold text-gray-900 text-base block">{meal.name}</span>
+                                <span className="text-sm text-gray-500">{meal.calories} calories</span>
+                              </div>
+                            </div>
+                            <div className="flex items-center gap-2">
                               {expandedMeals[idx] ? (
-                                <ChevronUp className="w-5 h-5 text-gray-600" />
+                                <ChevronUp className="w-5 h-5 text-gray-500" />
                               ) : (
-                                <ChevronDown className="w-5 h-5 text-gray-600" />
+                                <ChevronDown className="w-5 h-5 text-gray-500" />
                               )}
                             </div>
                           </button>
 
                           {expandedMeals[idx] && (
-                            <div className="p-4 bg-white">
+                            <div className="px-5 py-6 bg-gradient-to-br from-gray-50 to-white border-t border-gray-200">
                               {/* Macros */}
-                              <div className="grid grid-cols-3 gap-3 mb-4">
-                                <div className="text-center bg-blue-50 rounded p-2">
-                                  <div className="text-xs text-gray-600">Protein</div>
-                                  <div className="font-bold text-blue-600">{meal.protein}g</div>
-                                </div>
-                                <div className="text-center bg-green-50 rounded p-2">
-                                  <div className="text-xs text-gray-600">Carbs</div>
-                                  <div className="font-bold text-green-600">{meal.carbs}g</div>
-                                </div>
-                                <div className="text-center bg-yellow-50 rounded p-2">
-                                  <div className="text-xs text-gray-600">Fats</div>
-                                  <div className="font-bold text-yellow-600">{meal.fats}g</div>
+                              <div className="mb-6">
+                                <h6 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Nutritional Information</h6>
+                                <div className="grid grid-cols-3 gap-3">
+                                  <div className="bg-white rounded-lg p-4 border-2 border-green-100 hover:border-green-300 transition-colors">
+                                    <div className="text-xs font-medium text-gray-600 mb-1">Protein</div>
+                                    <div className="text-2xl font-bold text-green-600">{meal.protein}<span className="text-sm text-gray-500">g</span></div>
+                                  </div>
+                                  <div className="bg-white rounded-lg p-4 border-2 border-blue-100 hover:border-blue-300 transition-colors">
+                                    <div className="text-xs font-medium text-gray-600 mb-1">Carbs</div>
+                                    <div className="text-2xl font-bold text-blue-600">{meal.carbs}<span className="text-sm text-gray-500">g</span></div>
+                                  </div>
+                                  <div className="bg-white rounded-lg p-4 border-2 border-orange-100 hover:border-orange-300 transition-colors">
+                                    <div className="text-xs font-medium text-gray-600 mb-1">Fats</div>
+                                    <div className="text-2xl font-bold text-orange-600">{meal.fats}<span className="text-sm text-gray-500">g</span></div>
+                                  </div>
                                 </div>
                               </div>
 
-                              {/* Ingredients */}
-                              <div className="mb-4">
-                                <h5 className="font-semibold text-gray-900 mb-2">Ingredients:</h5>
-                                <ul className="list-disc list-inside space-y-1">
-                                  {meal.ingredients.map((ingredient, i) => (
-                                    <li key={i} className="text-gray-700 text-sm">{ingredient}</li>
-                                  ))}
-                                </ul>
-                              </div>
+                              <div className="grid md:grid-cols-2 gap-5">
+                                {/* Ingredients */}
+                                <div>
+                                  <h6 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                    <span className="w-1 h-4 bg-green-600 rounded"></span>
+                                    Ingredients
+                                  </h6>
+                                  <ul className="space-y-2.5 bg-white rounded-lg p-4 border border-gray-200">
+                                    {meal.ingredients.map((ingredient, i) => (
+                                      <li key={i} className="text-gray-700 text-sm flex items-start gap-3">
+                                        <span className="text-green-600 text-lg leading-none">✓</span>
+                                        <span className="leading-relaxed">{ingredient}</span>
+                                      </li>
+                                    ))}
+                                  </ul>
+                                </div>
 
-                              {/* Instructions */}
-                              <div>
-                                <h5 className="font-semibold text-gray-900 mb-2">Preparation:</h5>
-                                <p className="text-gray-700 text-sm">{meal.instructions}</p>
+                                {/* Instructions */}
+                                <div>
+                                  <h6 className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                    <span className="w-1 h-4 bg-green-600 rounded"></span>
+                                    Preparation
+                                  </h6>
+                                  <div className="bg-white rounded-lg p-4 border border-gray-200">
+                                    <p className="text-gray-700 text-sm leading-relaxed">{meal.instructions}</p>
+                                  </div>
+                                </div>
                               </div>
                             </div>
                           )}
@@ -164,15 +194,20 @@ function MealPlansPage() {
                     </div>
 
                     {/* Shopping List */}
-                    <div className="mt-8 bg-green-50 rounded-lg p-6">
-                      <div className="flex items-center gap-2 mb-4">
-                        <ShoppingCart className="w-6 h-6 text-green-600" />
-                        <h4 className="text-xl font-bold text-gray-900">Weekly Shopping List</h4>
+                    <div className="mt-8 bg-gradient-to-br from-green-50 to-white border-2 border-green-100 rounded-xl p-6">
+                      <div className="flex items-center gap-3 mb-5">
+                        <div className="bg-green-600 p-2 rounded-lg">
+                          <ShoppingCart className="w-5 h-5 text-white" />
+                        </div>
+                        <div>
+                          <h4 className="text-xl font-bold text-gray-900">Weekly Shopping List</h4>
+                          <p className="text-xs text-gray-600">All ingredients you'll need for the week</p>
+                        </div>
                       </div>
-                      <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
                         {plan.shoppingList.map((item, idx) => (
-                          <div key={idx} className="flex items-center gap-2">
-                            <div className="w-2 h-2 bg-green-600 rounded-full"></div>
+                          <div key={idx} className="flex items-center gap-3 bg-white rounded-lg p-3 border border-gray-200 hover:border-green-300 transition-colors">
+                            <span className="text-green-600 text-lg flex-shrink-0">✓</span>
                             <span className="text-sm text-gray-700">{item}</span>
                           </div>
                         ))}
@@ -181,31 +216,41 @@ function MealPlansPage() {
                   </div>
                 )}
               </div>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
-
-
-        {/* Nutrition Tips */}
-        <div className="mt-12 bg-gradient-to-r from-green-600 to-green-700 rounded-lg p-8 text-white">>
-          <h3 className="text-2xl font-bold mb-6">Nutrition Tips for Success</h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div>
-              <h4 className="font-semibold mb-2 text-lg">Meal Prep Strategy</h4>
-              <p className="text-red-100">Prepare meals in advance on weekends. Cook proteins, grains, and vegetables in bulk to save time during the week.</p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2 text-lg">Stay Hydrated</h4>
-              <p className="text-red-100">Drink at least 8-10 glasses of water daily. Increase intake during workouts and hot weather.</p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2 text-lg">Flexible Substitutions</h4>
-              <p className="text-red-100">Feel free to swap similar ingredients based on preference or availability while maintaining similar macro profiles.</p>
-            </div>
-            <div>
-              <h4 className="font-semibold mb-2 text-lg">Timing Matters</h4>
-              <p className="text-red-100">Eat protein and carbs within 2 hours post-workout for optimal recovery and muscle growth.</p>
+          {/* Nutrition Tips */}
+          <div className="mt-16 bg-white border border-gray-200 rounded-xl p-8 lg:p-10">
+            <h3 className="text-2xl lg:text-3xl font-bold mb-8 text-gray-900">Nutrition Tips for Success</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              <div className="group">
+                <h4 className="font-semibold mb-3 text-lg text-gray-900 flex items-center gap-2">
+                  <span className="text-green-600">→</span>
+                  Meal Prep Strategy
+                </h4>
+                <p className="text-gray-600 leading-relaxed">Prepare meals in advance on weekends. Cook proteins, grains, and vegetables in bulk to save time during the week.</p>
+              </div>
+              <div className="group">
+                <h4 className="font-semibold mb-3 text-lg text-gray-900 flex items-center gap-2">
+                  <span className="text-green-600">→</span>
+                  Stay Hydrated
+                </h4>
+                <p className="text-gray-600 leading-relaxed">Drink at least 8-10 glasses of water daily. Increase intake during workouts and hot weather.</p>
+              </div>
+              <div className="group">
+                <h4 className="font-semibold mb-3 text-lg text-gray-900 flex items-center gap-2">
+                  <span className="text-green-600">→</span>
+                  Flexible Substitutions
+                </h4>
+                <p className="text-gray-600 leading-relaxed">Feel free to swap similar ingredients based on preference or availability while maintaining similar macro profiles.</p>
+              </div>
+              <div className="group">
+                <h4 className="font-semibold mb-3 text-lg text-gray-900 flex items-center gap-2">
+                  <span className="text-green-600">→</span>
+                  Timing Matters
+                </h4>
+                <p className="text-gray-600 leading-relaxed">Eat protein and carbs within 2 hours post-workout for optimal recovery and muscle growth.</p>
+              </div>
             </div>
           </div>
         </div>

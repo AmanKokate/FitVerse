@@ -29,18 +29,20 @@ const WorkoutPlansPage = () => {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       
-      <div className="pt-24 pb-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Header */}
-          <div className="text-center mb-12">
-            <h1 className="text-5xl font-bold mb-4">
-              Workout <span className="text-green-600">Plans</span>
-            </h1>
-            <p className="text-xl text-gray-600">
-              Choose from our expertly designed training programs tailored to your goals
-            </p>
-          </div>
-
+      {/* Header */}
+      <div className="bg-gradient-to-br from-gray-50 to-gray-100 pt-28 pb-20 mt-16">
+        <div className="container mx-auto px-6 text-center">
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
+            Workout <span className="text-green-600">Plans</span>
+          </h1>
+          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-light">
+            Choose from our expertly designed training programs tailored to your goals
+          </p>
+        </div>
+      </div>
+      
+      <div className="container mx-auto px-6 py-16">
+        <div className="max-w-7xl mx-auto">
           {/* Plans Grid */}
           <div className="space-y-3 sm:space-y-4">
             {workoutPlans.map((plan) => (
