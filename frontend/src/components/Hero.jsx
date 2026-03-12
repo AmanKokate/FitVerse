@@ -45,7 +45,7 @@ const Hero = () => {
             </h1>
             
             <p className="text-base sm:text-lg md:text-xl text-gray-1000 leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              Join FitVerse and experience personalized training programs designed to help you achieve your fitness goals faster than ever before.
+              I'm Sarah Johnson — your dedicated fitness coach. Experience personalized training programs designed to help you achieve your fitness goals faster than ever before.
             </p>
             
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
@@ -74,7 +74,12 @@ const Hero = () => {
           
           {/* Right Content - Image Slideshow */}
           <div className="relative w-full max-w-md mx-auto lg:max-w-full">
-            <div className="aspect-square rounded-3xl bg-gray-200 overflow-hidden shadow-2xl relative">
+            {/* Decorative border frame */}
+            <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-green-200/40 via-emerald-100/20 to-transparent blur-sm hidden sm:block" />
+            <div className="relative aspect-square rounded-2xl bg-gray-200 overflow-hidden shadow-xl ring-1 ring-gray-200/60">
+              {/* Subtle gradient overlay for depth */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-black/5 z-[5] pointer-events-none" />
+
               {/* Images */}
               {images.map((image, index) => (
                 <img 
@@ -94,28 +99,28 @@ const Hero = () => {
               {/* Navigation Arrows */}
               <button 
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all duration-200 z-10"
+                className="absolute left-3 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md backdrop-blur-sm transition-all duration-200 z-10 hover:scale-105"
                 aria-label="Previous slide"
               >
-                <ChevronLeft className="h-5 w-5 text-gray-800" />
+                <ChevronLeft className="h-4 w-4 text-gray-700" />
               </button>
               <button 
                 onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white p-2 rounded-full shadow-lg transition-all duration-200 z-10"
+                className="absolute right-3 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white p-2 rounded-full shadow-md backdrop-blur-sm transition-all duration-200 z-10 hover:scale-105"
                 aria-label="Next slide"
               >
-                <ChevronRight className="h-5 w-5 text-gray-800" />
+                <ChevronRight className="h-4 w-4 text-gray-700" />
               </button>
 
               {/* Dot Indicators */}
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10 bg-black/20 backdrop-blur-sm rounded-full px-3 py-1.5">
                 {images.map((_, index) => (
                   <button
                     key={index}
                     onClick={() => goToSlide(index)}
                     className={`h-2 rounded-full transition-all duration-300 ${
                       index === currentImageIndex 
-                        ? 'w-8 bg-white' 
+                        ? 'w-6 bg-white' 
                         : 'w-2 bg-white/50 hover:bg-white/75'
                     }`}
                     aria-label={`Go to slide ${index + 1}`}

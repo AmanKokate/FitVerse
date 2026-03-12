@@ -73,7 +73,7 @@ const CalorieTrackerPage = () => {
       <div className="pt-24 sm:pt-28 pb-12 sm:pb-20">
         <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
           {/* Header */}
-          <div className="text-center mb-6 sm:mb-8">
+          <div className="text-center mb-6 sm:mb-8 py-10 sm:py-14 rounded-2xl bg-gradient-to-br from-green-50 via-emerald-50 to-gray-50 border border-green-100">
             <div className="inline-block mb-3">
               <span className="bg-green-100 text-green-700 px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wide">
                 Nutrition Analysis Tool

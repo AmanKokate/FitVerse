@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, Facebook, Twitter, Instagram, Youtube, InstagramIcon } from 'lucide-react'
+import { Mail, Phone, Instagram, Youtube, InstagramIcon } from 'lucide-react'
 
 const Footer = () => {
   return (
@@ -15,16 +15,10 @@ const Footer = () => {
             </div>
             
             <p className="text-gray-400 text-sm sm:text-base">
-              Transform your body and mind with our world-class fitness programs and expert trainers.
+              Transform your body and mind with personalized fitness coaching by Sarah Johnson.
             </p>
             {/* Social Links */}
             <div className="flex gap-2 sm:gap-3 pt-3 sm:pt-4">
-              <button className="bg-gray-800 hover:bg-green-600 p-2 sm:p-3 rounded-full transition-colors">
-                <Facebook className="h-4 w-4 sm:h-5 sm:w-5" />
-              </button>
-              <button className="bg-gray-800 hover:bg-green-600 p-2 sm:p-3 rounded-full transition-colors">
-                <Twitter className="h-4 w-4 sm:h-5 sm:w-5" />
-              </button>
               <button className="bg-gray-800 hover:bg-green-600 p-2 sm:p-3 rounded-full transition-colors">
                 <Instagram className="h-4 w-4 sm:h-5 sm:w-5" />
               </button>
@@ -50,7 +44,7 @@ const Footer = () => {
               </li>
               <li>
                 <a href="#trainers" className="text-gray-400 hover:text-green-600 transition-colors text-sm sm:text-base">
-                  Trainers
+                  Your Coach
                 </a>
               </li>
               <li>
@@ -65,17 +59,17 @@ const Footer = () => {
           <div>
             <h3 className="text-lg font-bold mb-4">Services</h3>
             <ul className="space-y-3">
-              <li className="text-gray-400">Strength Training</li>
-              <li className="text-gray-400">Cardio Fitness</li>
-              <li className="text-gray-400">Personal Training</li>
-              <li className="text-gray-400">Group Classes</li>
-              <li className="text-gray-400">Nutrition Coaching</li>
+              <li className="text-gray-400">1-on-1 Coaching</li>
+              <li className="text-gray-400">Online Training</li>
+              <li className="text-gray-400">Nutrition Plans</li>
+              <li className="text-gray-400">Home Workouts</li>
+              <li className="text-gray-400">Transformation Programs</li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 className="text-lg font-bold mb-4">Contact Us</h3>
+            <h3 className="text-lg font-bold mb-4">Contact Me</h3>
             <ul className="space-y-4">
               <li className="flex items-start gap-3">
                 <InstagramIcon className="h-5 w-5 text-red-600 mt-1" />

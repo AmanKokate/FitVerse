@@ -19,14 +19,16 @@ function MealPlansPage() {
     <div className="min-h-screen bg-gray-50">
       <Navbar />
       {/* Header */}
-      <div className="bg-gradient-to-br from-gray-50 to-gray-100 pt-28 pb-20 mt-16">
-        <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
-            Meal Plans & <span className="text-green-600">Nutrition</span>
-          </h1>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-light">
-            Fuel your fitness journey with expertly crafted meal plans
-          </p>
+      <div className="pt-24 sm:pt-28 pb-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+          <div className="text-center py-10 sm:py-14 rounded-2xl bg-gradient-to-br from-green-50 via-emerald-50 to-gray-50 border border-green-100">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
+              Meal Plans & <span className="text-green-600">Nutrition</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-light px-6">
+              Fuel your fitness journey with expertly crafted meal plans
+            </p>
+          </div>
         </div>
       </div>
 

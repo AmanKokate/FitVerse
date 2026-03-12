@@ -7,21 +7,21 @@ const Testimonials = () => {
       role: "Marketing Executive",
       image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=200",
       rating: 5,
-      text: "FitVerse transformed my life! I've lost 30 pounds and gained so much confidence. The trainers are amazing and the community is incredibly supportive."
+      text: "Coach Sarah transformed my life! I've lost 30 pounds and gained so much confidence. Her personalized approach and constant support made all the difference."
     },
     {
       name: "David Martinez",
       role: "Software Engineer",
       image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200",
       rating: 5,
-      text: "Best gym I've ever joined. The personalized training programs helped me achieve my strength goals faster than I thought possible. Highly recommend!"
+      text: "Best coaching experience ever. Sarah's personalized training programs helped me achieve my strength goals faster than I thought possible. Highly recommend!"
     },
     {
       name: "Amanda Lee",
       role: "Entrepreneur",
       image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=200",
       rating: 5,
-      text: "The yoga and wellness programs at FitVerse are top-notch. I feel more balanced, energized, and healthy than ever before. Thank you FitVerse!"
+      text: "Sarah's coaching is top-notch. I feel more balanced, energized, and healthy than ever before. She truly cares about each client's journey. Thank you FitVerse!"
     }
   ]
 
@@ -33,9 +33,9 @@ const Testimonials = () => {
           <span className="inline-block text-green-600 font-semibold text-sm uppercase tracking-wider mb-3">
             Success Stories
           </span>
-          <h2 className="section-title">What Our Members Say</h2>
+          <h2 className="section-title">What My Clients Say</h2>
           <p className="section-subtitle max-w-2xl mx-auto">
-            Real results from real people who've transformed their lives with FitVerse.
+            Real results from real people who've transformed their lives with my coaching.
           </p>
         </div>
 
@@ -78,7 +78,7 @@ const Testimonials = () => {
         <div className="text-center mt-16">
           <p className="text-gray-600 mb-6 text-lg">Ready to start your transformation?</p>
           <button className="btn-primary">
-            Join Our Community
+            Work With Me
           </button>
         </div>
       </div>

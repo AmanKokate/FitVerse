@@ -7,22 +7,22 @@ function AboutPage() {
     {
       icon: Target,
       title: "Results-Driven",
-      description: "We focus on delivering measurable results through proven training methods and personalized programs."
+      description: "I focus on delivering measurable results through proven training methods and personalized programs."
     },
     {
       icon: Heart,
-      title: "Community First",
-      description: "Building a supportive community where everyone feels welcome, motivated, and empowered to succeed."
+      title: "Client First",
+      description: "Every client gets my full attention. I create a supportive environment where you feel motivated and empowered."
     },
     {
       icon: Users,
-      title: "Expert Guidance",
-      description: "Our certified trainers bring years of experience and stay updated with the latest fitness science."
+      title: "Personal Attention",
+      description: "With 8+ years of certified coaching experience, I stay updated with the latest fitness science to serve you better."
     },
     {
       icon: Zap,
       title: "Innovation",
-      description: "We leverage cutting-edge technology and training techniques to optimize your fitness journey."
+      description: "I leverage cutting-edge technology and training techniques to optimize your fitness journey."
     },
     {
       icon: Shield,
@@ -32,36 +32,15 @@ function AboutPage() {
     {
       icon: Award,
       title: "Excellence",
-      description: "Committed to maintaining the highest standards in fitness training, nutrition guidance, and customer service."
-    }
-  ]
-
-  const team = [
-    {
-      name: "Alex Martinez",
-      role: "Lead Developer & Fitness Coach",
-      image: "https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=400",
-      bio: "Full-stack developer and certified personal trainer. Combines tech expertise with fitness knowledge to create innovative training solutions."
-    },
-    {
-      name: "Jordan Smith",
-      role: "Developer & Nutrition Coach",
-      image: "https://images.unsplash.com/photo-1594381898411-846e7d193883?w=400",
-      bio: "Software engineer and registered nutritionist. Specializes in building nutrition tracking tools and personalized meal planning systems."
-    },
-    {
-      name: "Taylor Chen",
-      role: "Developer & Wellness Specialist",
-      image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=400",
-      bio: "Frontend developer and certified wellness coach. Passionate about creating user-friendly fitness platforms and holistic health approaches."
+      description: "Committed to maintaining the highest standards in fitness training, nutrition guidance, and client service."
     }
   ]
 
   const stats = [
-    { number: "1000+", label: "Active Members" },
-    { number: "3", label: "Expert Team" },
-    { number: "2", label: "Years Experience" },
-    { number: "98%", label: "Success Rate" }
+    { number: "20+", label: "Clients Transformed" },
+    { number: "8+", label: "Years Experience" },
+    { number: "NASM-CPT", label: "Certified Trainer" },
+    { number: "98%", label: "Client Satisfaction" }
   ]
 
   return (
@@ -69,14 +48,16 @@ function AboutPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <div className="bg-gradient-to-br from-gray-50 to-gray-100 pt-28 pb-20 mt-16">
-        <div className="container mx-auto px-6 text-center">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
-            About <span className="text-green-600">FitVerse</span>
-          </h1>
-          <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-light">
-            Empowering individuals to achieve their fitness goals through personalized training, expert guidance, and a supportive community
-          </p>
+      <div className="pt-24 sm:pt-28 pb-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 lg:px-8">
+          <div className="text-center py-10 sm:py-14 rounded-2xl bg-gradient-to-br from-green-50 via-emerald-50 to-gray-50 border border-green-100">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 text-gray-900">
+              About <span className="text-green-600">FitVerse</span>
+            </h1>
+            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-light px-6">
+              Hi, I'm Sarah Johnson — a certified fitness coach dedicated to helping you achieve your goals through personalized training and expert guidance
+            </p>
+          </div>
         </div>
       </div>
 
@@ -97,19 +78,19 @@ function AboutPage() {
       {/* Our Story Section */}
       <div className="container mx-auto px-6 py-16 max-w-7xl">
         <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">Our Story</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-8 text-center">My Story</h2>
           <div className="space-y-5 text-gray-700 leading-relaxed text-lg">
             <p>
-              FitVerse was born from a unique vision: combining technology expertise with fitness coaching to create an accessible, intelligent platform for everyone's fitness journey. Our team of 3 passionate individuals brings together both development skills and certified coaching expertise.
+              FitVerse was born from my passion for fitness and my desire to make professional coaching accessible to everyone. With over 8 years of experience as a certified personal trainer (NASM-CPT, CSCS), I've helped 20+ clients transform their bodies and lives.
             </p>
             <p>
-              What makes us different is that we're not just developers or just coaches—we're both. This unique perspective allows us to build tools that truly understand what users need, backed by real fitness knowledge and technical innovation.
+              What makes my approach different is the personal touch. As a solo coach, I give every client my full attention — no cookie-cutter programs, no generic advice. Every plan I create is built specifically for you, your body, and your goals.
             </p>
             <p>
-              From calorie tracking and personalized meal plans to comprehensive workout programs, every feature we build is informed by both our coding expertise and our hands-on coaching experience. We know what works because we've lived it, both in the gym and in the code.
+              From calorie tracking and personalized meal plans to comprehensive workout programs, every tool on this platform is designed with real coaching knowledge. I know what works because I've lived it — both in the gym and with my clients.
             </p>
             <p>
-              Our mission is to make professional fitness coaching accessible through smart technology. We're building more than just an app—we're creating a comprehensive fitness ecosystem that empowers people to take control of their health with the right tools, guidance, and support.
+              My mission is simple: to help you become the strongest, healthiest version of yourself. Whether you're a complete beginner or an experienced athlete, I'm here to guide you every step of the way.
             </p>
           </div>
         </div>
@@ -118,7 +99,7 @@ function AboutPage() {
       {/* Values Section */}
       <div className="bg-gray-50 py-16">
         <div className="container mx-auto px-6 max-w-7xl">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">Our Core Values</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">My Core Values</h2>
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {values.map((value, index) => (
               <div key={index} className="bg-white border border-gray-200 rounded-xl p-6 hover:border-green-600 transition-colors group">
@@ -131,33 +112,31 @@ function AboutPage() {
         </div>
       </div>
 
-      {/* Team Section */}
+      {/* Coach Profile Section */}
       <div className="container mx-auto px-6 py-16 max-w-7xl">
-        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">Meet Our Team</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {team.map((member, index) => (
-            <div key={index} className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-green-600 transition-colors group">
-              <img 
-                src={member.image} 
-                alt={member.name}
-                className="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-300"
-              />
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-1">{member.name}</h3>
-                <p className="text-green-600 font-semibold mb-3 text-sm">{member.role}</p>
-                <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
-              </div>
+        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12 text-center">Your Coach</h2>
+        <div className="flex justify-center">
+          <div className="bg-white border border-gray-200 rounded-xl overflow-hidden hover:border-green-600 transition-colors group max-w-md w-full">
+            <img 
+              src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=400" 
+              alt="Sarah Johnson"
+              className="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-300"
+            />
+            <div className="p-6">
+              <h3 className="text-xl font-bold text-gray-900 mb-1">Sarah Johnson</h3>
+              <p className="text-green-600 font-semibold mb-3 text-sm">Founder & Head Coach</p>
+              <p className="text-gray-600 text-sm leading-relaxed">Certified personal trainer (NASM-CPT, CSCS) with 8+ years of experience in strength & conditioning. Passionate about helping every client unlock their full potential through personalized coaching.</p>
             </div>
-          ))}
+          </div>
         </div>
       </div>
 
       {/* Mission Section */}
       <div className="bg-gradient-to-br from-green-50 to-green-100 py-16">
         <div className="container mx-auto px-6 text-center max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">Our Mission</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-gray-900">My Mission</h2>
           <p className="text-xl text-gray-700 max-w-3xl mx-auto mb-8 leading-relaxed">
-            To empower individuals worldwide to achieve their fitness goals through personalized coaching, innovative technology, and a supportive community that celebrates every victory along the journey.
+            To empower individuals to achieve their fitness goals through personalized coaching, innovative tools, and dedicated support that celebrates every victory along the journey.
           </p>
           <a href="/coaching" className="inline-block bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
             Start Your Journey
@@ -168,9 +147,9 @@ function AboutPage() {
       {/* Join Us Section */}
       <div className="container mx-auto px-6 py-16 max-w-7xl">
         <div className="border border-gray-200 rounded-2xl p-12 text-center bg-white">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Join the FitVerse Community</h2>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Ready to Transform?</h2>
           <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed">
-            Whether you're just starting out or looking to take your fitness to the next level, we're here to support you every step of the way.
+            Whether you're just starting out or looking to take your fitness to the next level, I'm here to support you every step of the way.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="/coaching" className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 transition-colors">
