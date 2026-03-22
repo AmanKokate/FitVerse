@@ -2,88 +2,120 @@ import { Award, CheckCircle, Dumbbell, Heart, Users } from 'lucide-react'
 import { Link } from 'react-router-dom'
 
 const Trainers = () => {
-  const trainer = {
-    name: "Sarah Johnson",
-    specialty: "Strength & Conditioning",
-    image: "https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=400",
-    experience: "8 Years",
-    certifications: "NASM-CPT, CSCS",
-    clientsTransformed: "20+"
-  }
+  const trainers = [
+    {
+      name: 'Sarah Johnson',
+      specialty: 'Strength & Conditioning',
+      image: 'https://images.unsplash.com/photo-1594381898411-846e7d193883?q=80&w=400',
+      experience: '8 Years',
+      certifications: 'NASM-CPT, CSCS',
+      clientsTransformed: '20+',
+      bio: 'Helps clients build sustainable strength and confidence through progressive training.',
+      highlights: [
+        'Body transformation programs',
+        'Functional strength focus',
+        'Habit-based nutrition coaching'
+      ]
+    },
+    {
+      name: 'Daniel Carter',
+      specialty: 'Muscle Building & Athletic Performance',
+      image: 'https://images.unsplash.com/photo-1549476464-37392f717541?q=80&w=400',
+      experience: '9 Years',
+      certifications: 'NSCA-CPT, USAW Level 1',
+      clientsTransformed: '25+',
+      bio: 'Guides clients through structured strength and performance programs with measurable progress.',
+      highlights: [
+        'Lean muscle development plans',
+        'Athletic performance training',
+        'Technique-first strength coaching'
+      ]
+    },
+    {
+      name: 'Priya Mehta',
+      specialty: 'Mobility & Women Fitness',
+      image: 'https://images.unsplash.com/photo-1609899537878-88d5ba429bdb?q=80&w=400',
+      experience: '7 Years',
+      certifications: 'ISSA-CPT, Yoga Alliance RYT-200',
+      clientsTransformed: '18+',
+      bio: 'Combines strength, mobility, and mindful movement to improve long-term performance.',
+      highlights: [
+        'Injury-aware programming',
+        'Mobility and recovery plans',
+        'Women-specific coaching support'
+      ]
+    }
+  ]
 
   return (
     <section id="trainers" className="py-20 sm:py-24 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
         <div className="text-center mb-16 sm:mb-20">
           <span className="inline-block text-green-600 font-semibold text-sm uppercase tracking-wider mb-3">
-            Your Coach
+            Coaching Team
           </span>
-          <h2 className="section-title">Meet Your Coach</h2>
+          <h2 className="section-title">Meet Your Coaches</h2>
           <p className="section-subtitle max-w-2xl mx-auto">
-            Work with a certified professional who is passionate about helping you reach your goals.
+            Train with certified professionals, each focused on different goals and coaching styles.
           </p>
         </div>
 
-        {/* Coach Card + Info Side by Side */}
-        <div className="grid md:grid-cols-2 gap-8 lg:gap-12 items-center max-w-5xl mx-auto">
-          {/* Coach Card (smaller) */}
-          <div className="group border-2 border-gray-200 rounded-2xl p-5 hover:border-green-600 transition-colors max-w-sm mx-auto w-full">
-            <div className="relative mb-4 overflow-hidden rounded-xl">
-              <img 
-                src={trainer.image} 
-                alt={trainer.name}
-                className="w-full h-64 object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0"></div>
-              <div className="absolute bottom-3 left-3 flex items-center gap-2 text-white">
-                <Award className="h-4 w-4" />
-                <span className="text-sm font-medium">{trainer.experience} Experience</span>
-              </div>
-            </div>
-            <div className="space-y-2">
-              <h3 className="text-lg font-bold text-gray-900">{trainer.name}</h3>
-              <p className="text-green-600 font-medium text-sm">{trainer.specialty}</p>
-              <p className="text-gray-600 text-sm">Certified: {trainer.certifications}</p>
-              <p className="text-green-600 font-semibold text-sm">{trainer.clientsTransformed} Clients Transformed</p>
-            </div>
-          </div>
-
-          {/* Coach Info */}
-          <div className="space-y-6">
-            <h3 className="text-2xl lg:text-3xl font-bold text-gray-900">
-              Hi, I'm Sarah 👋
-            </h3>
-            <p className="text-gray-600 leading-relaxed">
-              With over 8 years of experience in strength & conditioning, I've dedicated my career to helping people transform their bodies and build lasting healthy habits. Every program I create is tailored specifically to you.
-            </p>
-
-            <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <CheckCircle className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">NASM Certified Personal Trainer & CSCS</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <Dumbbell className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">Specialized in body transformations & strength training</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <Heart className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">Personalized nutrition & workout plans for every client</span>
-              </div>
-              <div className="flex items-start gap-3">
-                <Users className="h-5 w-5 text-green-600 mt-0.5 flex-shrink-0" />
-                <span className="text-gray-700 text-sm">20+ successful client transformations and counting</span>
-              </div>
-            </div>
-
-            <Link
-              to="/coaching"
-              className="inline-block px-6 py-2.5 bg-green-600 text-white rounded-lg text-sm font-semibold hover:bg-green-700 transition-all duration-300 shadow-md hover:shadow-lg"
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          {trainers.map((trainer) => (
+            <article
+              key={trainer.name}
+              className="group border-2 border-gray-200 rounded-2xl p-5 hover:border-green-600 transition-colors"
             >
-              Work With Me
-            </Link>
-          </div>
+              <div className="relative mb-4 overflow-hidden rounded-xl">
+                <img
+                  src={trainer.image}
+                  alt={trainer.name}
+                  className="w-full h-64 object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/0 to-black/0"></div>
+                <div className="absolute bottom-3 left-3 flex items-center gap-2 text-white">
+                  <Award className="h-4 w-4" />
+                  <span className="text-sm font-medium">{trainer.experience} Experience</span>
+                </div>
+              </div>
+
+              <div className="space-y-2 mb-4">
+                <h3 className="text-lg font-bold text-gray-900">{trainer.name}</h3>
+                <p className="text-green-600 font-medium text-sm">{trainer.specialty}</p>
+                <p className="text-gray-600 text-sm">Certified: {trainer.certifications}</p>
+                <p className="text-green-600 font-semibold text-sm">{trainer.clientsTransformed} Clients Transformed</p>
+                <p className="text-gray-600 text-sm leading-relaxed">{trainer.bio}</p>
+              </div>
+
+              <div className="space-y-3 mb-5">
+                <div className="flex items-start gap-3">
+                  <CheckCircle className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-700 text-sm">{trainer.highlights[0]}</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Dumbbell className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-700 text-sm">{trainer.highlights[1]}</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <Heart className="h-4 w-4 text-green-600 mt-0.5 flex-shrink-0" />
+                  <span className="text-gray-700 text-sm">{trainer.highlights[2]}</span>
+                </div>
+              </div>
+
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2 text-gray-600 text-xs">
+                  <Users className="h-4 w-4 text-green-600" />
+                  <span>Accepting New Clients</span>
+                </div>
+                <Link
+                  to="/coaching"
+                  className="inline-block px-4 py-2 bg-green-600 text-white rounded-lg text-xs font-semibold hover:bg-green-700 transition-all duration-300"
+                >
+                  Work With Us
+                </Link>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>

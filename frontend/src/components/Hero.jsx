@@ -4,9 +4,9 @@ import { Link } from 'react-router-dom'
 
 const Hero = () => {
   const images = [
-    "/images/hero1.png",
-    "/images/hero2.png",
-    "/images/hero3.png",
+    "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=1400&q=80",
+    "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?auto=format&fit=crop&w=1400&q=80",
+    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=1400&q=80",
   ]
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0)

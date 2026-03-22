@@ -78,7 +78,7 @@ const Testimonials = () => {
         <div className="text-center mt-16">
           <p className="text-gray-600 mb-6 text-lg">Ready to start your transformation?</p>
           <button className="btn-primary">
-            Work With Me
+            Work With Us
           </button>
         </div>
       </div>
