@@ -5,6 +5,8 @@ import WorkoutPlansPage from './pages/WorkoutPlansPage'
 import MealPlansPage from './pages/MealPlansPage'
 import CoachingPage from './pages/CoachingPage'
 import AboutPage from './pages/AboutPage'
+import PoseCorrectionPage from './pages/PoseCorrectionPage'
+import RecommenderPage from './pages/RecommenderPage'
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
         <Route path="/workout-plans" element={<WorkoutPlansPage />} />
         <Route path="/meal-plans" element={<MealPlansPage />} />
         <Route path="/coaching" element={<CoachingPage />} />
+        <Route path="/pose-correction" element={<PoseCorrectionPage />} />
+        <Route path="/recommender" element={<RecommenderPage />} />
         <Route path="/about" element={<AboutPage />} />
       </Routes>
     </Router>

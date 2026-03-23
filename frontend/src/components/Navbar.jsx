@@ -1,12 +1,18 @@
 import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { ChevronDown, Menu, X } from 'lucide-react'
 import { Link, useLocation } from 'react-router-dom'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+  const [isPremiumOpen, setIsPremiumOpen] = useState(false)
   const location = useLocation()
 
-  const toggleMenu = () => setIsOpen(!isOpen)
+  const toggleMenu = () => {
+    setIsOpen(!isOpen)
+    if (isOpen) {
+      setIsPremiumOpen(false)
+    }
+  }
 
   const navLinks = [
     { to: '/', label: 'Home' },
@@ -14,10 +20,19 @@ const Navbar = () => {
     { to: '/workout-plans', label: 'Workouts' },
     { to: '/meal-plans', label: 'Meal Plans' },
     { to: '/coaching', label: 'Coaching' },
+  ]
+
+  const premiumLinks = [
+    { to: '/pose-correction', label: 'Pose Correction' },
+    { to: '/recommender', label: 'Workout and Diet Recommender' },
+  ]
+
+  const trailingLinks = [
     { to: '/about', label: 'About' },
   ]
 
   const isActive = (path) => location.pathname === path
+  const isPremiumActive = premiumLinks.some((link) => isActive(link.to))
 
   return (
     <nav className="bg-black/85 backdrop-blur-md shadow-lg fixed w-full top-0 z-50">
@@ -50,12 +65,56 @@ const Navbar = () => {
                 )}
               </Link>
             ))}
-            <Link
-              to="/coaching"
-              className="ml-4 px-4 py-2 bg-gradient-to-r from-green-500 to-green-600 text-white text-sm font-semibold rounded-full hover:from-green-400 hover:to-green-500 transition-all duration-200 hover:shadow-lg hover:shadow-green-500/25"
-            >
-              Get Started
-            </Link>
+
+            <div className="relative group">
+              <button
+                type="button"
+                className={`relative px-3 py-2 rounded-md font-medium transition-all duration-200 text-sm xl:text-base inline-flex items-center gap-1 ${
+                  isPremiumActive
+                    ? 'text-green-400'
+                    : 'text-gray-300 hover:text-green-400 hover:bg-white/5'
+                }`}
+              >
+                Premium Features
+                <ChevronDown className="h-4 w-4" />
+                {isPremiumActive && (
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-0.5 bg-gradient-to-r from-green-400 to-green-500 rounded-full"></span>
+                )}
+              </button>
+
+              <div className="absolute left-0 top-full mt-2 w-52 bg-black/95 border border-gray-800 rounded-md shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                {premiumLinks.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    className={`block px-4 py-2.5 text-sm transition-colors ${
+                      isActive(link.to)
+                        ? 'text-green-400 bg-green-400/10'
+                        : 'text-gray-300 hover:text-green-400 hover:bg-gray-900'
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
+            </div>
+
+            {trailingLinks.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className={`relative px-3 py-2 rounded-md font-medium transition-all duration-200 text-sm xl:text-base ${
+                  isActive(link.to)
+                    ? 'text-green-400'
+                    : 'text-gray-300 hover:text-green-400 hover:bg-white/5'
+                }`}
+              >
+                {link.label}
+                {isActive(link.to) && (
+                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4/5 h-0.5 bg-gradient-to-r from-green-400 to-green-500 rounded-full"></span>
+                )}
+              </Link>
+            ))}
           </div>
 
           {/* Mobile Menu Button */}
@@ -88,13 +147,56 @@ const Navbar = () => {
                   {link.label}
                 </Link>
               ))}
-              <Link
-                to="/coaching"
-                onClick={() => setIsOpen(false)}
-                className="block mx-3 mt-3 px-4 py-2.5 bg-gradient-to-r from-green-500 to-green-600 text-white text-center text-sm font-semibold rounded-full hover:from-green-400 hover:to-green-500 transition-all"
+
+              <button
+                type="button"
+                onClick={() => setIsPremiumOpen(!isPremiumOpen)}
+                className={`w-full flex items-center justify-between px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                  isPremiumActive
+                    ? 'text-green-400 bg-green-400/10 border-l-2 border-green-400'
+                    : 'text-gray-300 hover:text-green-400 hover:bg-gray-900'
+                }`}
               >
-                Get Started
-              </Link>
+                <span>Premium Features</span>
+                <ChevronDown className={`h-4 w-4 transition-transform ${isPremiumOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {isPremiumOpen && (
+                <div className="ml-4 mt-1 space-y-1 border-l border-gray-700 pl-2">
+                  {premiumLinks.map((link) => (
+                    <Link
+                      key={link.to}
+                      to={link.to}
+                      onClick={() => {
+                        setIsOpen(false)
+                        setIsPremiumOpen(false)
+                      }}
+                      className={`block px-3 py-2 rounded-md text-sm transition-colors ${
+                        isActive(link.to)
+                          ? 'text-green-400 bg-green-400/10'
+                          : 'text-gray-300 hover:text-green-400 hover:bg-gray-900'
+                      }`}
+                    >
+                      {link.label}
+                    </Link>
+                  ))}
+                </div>
+              )}
+
+              {trailingLinks.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  onClick={() => setIsOpen(false)}
+                  className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
+                    isActive(link.to)
+                      ? 'text-green-400 bg-green-400/10 border-l-2 border-green-400'
+                      : 'text-gray-300 hover:text-green-400 hover:bg-gray-900'
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              ))}
             </div>
           </div>
         )}
